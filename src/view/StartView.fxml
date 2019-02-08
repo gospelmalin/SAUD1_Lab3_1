@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StartViewController">
+   <children>
+      <Label alignment="CENTER" layoutX="5.0" layoutY="6.0" prefHeight="42.0" prefWidth="580.0" text="Welcome to SAUD1!">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="showUsersViewBtn" layoutX="155.0" layoutY="96.0" mnemonicParsing="false" onAction="#selectShowUsersView" prefHeight="88.0" prefWidth="112.0" text="Show users" />
+      <Button fx:id="addUserViewBtn" layoutX="322.0" layoutY="96.0" mnemonicParsing="false" onAction="#selectAddUserView" prefHeight="88.0" prefWidth="112.0" text="Add user" />
+      <Button fx:id="updateUserViewBtn" layoutX="155.0" layoutY="217.0" mnemonicParsing="false" onAction="#selectUpdateUserView" prefHeight="88.0" prefWidth="112.0" text="Update user" textAlignment="CENTER" wrapText="true" />
+      <Button fx:id="deleteUserViewBtn" layoutX="322.0" layoutY="217.0" mnemonicParsing="false" onAction="#selectDeleteUserView" prefHeight="88.0" prefWidth="112.0" text="Delete user" textAlignment="CENTER" wrapText="true" />
+      <Label alignment="CENTER" layoutX="4.0" layoutY="35.0" prefHeight="42.0" prefWidth="580.0" text="Show, Add, Update or Delete users">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
