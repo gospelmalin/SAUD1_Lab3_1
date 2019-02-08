@@ -40,7 +40,7 @@ public class RESTClient {
 	private Client client;
 	
 	// URL (parts) as static strings for ease of use and more readable code.
-	/** The start part of the URL used to Search for movies in TMDB. */
+	/** The  URL used to Search for users in userdblab2. */
 	private static String REST_SERVICE_URL = "http://localhost:8081/RESTDbLab2Part2/rest/UserService/users"; 
 	
 	
@@ -66,20 +66,6 @@ public class RESTClient {
 	 * @param query the query
 	 * @return the string
 	 */
-	/*
-	public List queryGetUsers() {
-		RESTClient rc = new RESTClient();
-		GenericType<List<User>> list= new GenericType<List<User>>() {};
-		List<User> users = rc.client
-				.target(REST_SERVICE_URL)
-				.request(MediaType.APPLICATION_XML)
-				.get(list); // get the XML representation
-		//print the XML representation
-		System.out.println(users); // Kept for reference only
-		return users;
-	}
-	*/
-	
 	public String queryGetUsers() {
 		RESTClient rc = new RESTClient();
 		GenericType<String> string = new GenericType<String>() {};
