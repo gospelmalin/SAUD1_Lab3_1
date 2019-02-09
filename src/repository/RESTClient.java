@@ -72,6 +72,27 @@ public class RESTClient {
 	}
 	
 	/**
+	 * Query API for selected user.
+	 *
+	 * @param query the query
+	 * @return the string
+	 */
+
+	protected String getSelectedUser(int userId) {
+		RESTClient rc = new RESTClient();
+		GenericType<String> string = new GenericType<String>() {};
+		String s = rc.client
+				.target(REST_SERVICE_URL)
+			    .path("/{userid}")
+		        .resolveTemplate("userid", Integer.toString(userId))
+				.request(MediaType.APPLICATION_XML)
+				.get(string); // get the XML representation
+		//print the XML representation
+		System.out.println(s); // Kept for reference only
+		return s;
+	}
+	
+	/**
 	 * Call API to add user.
 	 *
 	 * @param user the User
@@ -82,8 +103,8 @@ public class RESTClient {
 	    form.param("id", Integer.toString(user.getId()));
 	    form.param("name", user.getName());
 	    form.param("profession", user.getProfession());
-	
-	    String callResult = client
+	    RESTClient rc = new RESTClient();
+	    String callResult = rc.client
 	       .target(REST_SERVICE_URL)
 	       .request(MediaType.APPLICATION_XML)
 	       .post(Entity.entity(form,
@@ -106,8 +127,8 @@ public class RESTClient {
 	    form.param("id", Integer.toString(user.getId()));
 	    form.param("name", user.getName());
 	    form.param("profession", user.getProfession());
-	
-	    String callResult = client
+	    RESTClient rc = new RESTClient();
+	    String callResult = rc.client
 	       .target(REST_SERVICE_URL)
 	       .request(MediaType.APPLICATION_XML)
 	       .put(Entity.entity(form,
@@ -125,7 +146,8 @@ public class RESTClient {
 	 * @return the string returnMessage
 	 */
 	protected String deleteUser(User user) {
-	 String callResult = client
+	 RESTClient rc = new RESTClient();
+	 String callResult = rc.client
 	         .target(REST_SERVICE_URL)
 	         .path("/{userid}")
 	         .resolveTemplate("userid", Integer.toString(user.getId()))
