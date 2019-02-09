@@ -166,48 +166,6 @@ public class ShowUsersController {
             updateTable();
 	    }
 	    
-	    /*
-	    @FXML
-	    void selectAddUserView(ActionEvent event) {
-	    	
-	    	//mer riktigt härifrån
-	    	
-	    	String message = null;
-            //Textfield cannot be empty
-            if(!(userNameTxt.getText().length() > 0)) {
-            	message = "Enter name before trying to add a user.";
-            	messageTextArea.setText(message);
-                return;
-            }
-            if(!(userProfessionTxt.getText().length() > 0)) {
-            	message = "Enter profession before trying to add a user. \nIf no profession, enter None.";
-            	messageTextArea.setText(message);
-                return;
-            }
-            if(!(userIdTxt.getText().length() > 0)) {
-            	message = "Enter id before trying to add a user.";
-            	messageTextArea.setText(message);
-                return;
-            }
-            
-            //New user instance			
-			User u1 = new User();
-			u1.setId(Integer.parseInt(userIdTxt.getText()));
-			u1.setName(userNameTxt.getText());
-			u1.setProfession(userProfessionTxt.getText());
-           // userRepo.add(u1); //TODO
-			RESTClient rc = new RESTClient(); //TODO temp for test
-			message = rc.addUser(u1); //TODO temp for test
-            messageTextArea.setText(message); //TODO
-            //update table
-            updateTable();
-
-	     //   }
-	    	
-	    	//till hit
- 
-	    }
-	    */
 	    
 	    private void resetTextFields() {
 	    	userIdTxt.setText("");
@@ -273,10 +231,10 @@ public class ShowUsersController {
 	  */
 	 // Updating table with result from Db search
 		private void updateTable() {
-			RESTClient rc = new RESTClient();
-			String xmlString = rc.queryGetUsers();
+			//RESTClient rc = new RESTClient();
+			String xmlString = userRepo.getAllUsers();
 	    	usersList = new ArrayList<User>();
-	    	usersList = rc.jaxbXmlStringToObject(xmlString);
+	    	usersList = userRepo.jaxbXmlStringToObject(xmlString);
 	    	System.out.println("first record in usersList: " + usersList.get(0)); //TODO TEMP
 		//	rc.queryGetUsers();
 	    	//jH = new JsonHandler();
