@@ -35,7 +35,7 @@ public class Main extends Application {
         this.primaryStage = primaryStage;
  
         //Set primary stage title
-        this.primaryStage.setTitle("Search and view movie information using TMDB data - an App by Malin");
+        this.primaryStage.setTitle("SAUD1 - Show, Add, Update and Delete user data in userdblab2 - by Malin");
  
         //Initialize RootLayout
         initRootLayout();
@@ -81,9 +81,6 @@ public class Main extends Application {
             //Add all the views for the project here (name + location)
             viewcontroller.addScreen("StartView", FXMLLoader.load(getClass().getResource("/view/StartView.fxml")));
             viewcontroller.addScreen("ShowUsersView", FXMLLoader.load(getClass().getResource("/view/ShowUsersLayout.fxml")));
-            // viewcontroller.addScreen("AddUserView", FXMLLoader.load(getClass().getResource("/view/AddUserLayout.fxml")));       
-         //  viewcontroller.addScreen("UpdateUserView", FXMLLoader.load(getClass().getResource("/view/UpdateUserLayout.fxml")));
-          // viewcontroller.addScreen("DeleteUserView", FXMLLoader.load(getClass().getResource("/view/DeleteUserLayout.fxml")));
 
             //ViewControllers(scene);
             // Set Start view into the center of root layout.
