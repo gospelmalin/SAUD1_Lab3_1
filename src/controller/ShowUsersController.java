@@ -228,9 +228,9 @@ public class ShowUsersController {
 	    	u1.setId(Integer.parseInt(userIdTxt.getText()));
 			u1.setName(userNameTxt.getText());
 			u1.setProfession(userProfessionTxt.getText());
-           // userRepo.delete(u1); //TODO
-			RESTClient rc = new RESTClient(); //TODO temp for test
-			message = rc.deleteUser(u1); //TODO temp for test
+            message = userRepo.delete(u1);
+			//RESTClient rc = new RESTClient(); //TODO temp for test
+			//message = rc.deleteUser(u1); //TODO temp for test
             messageTextArea.setText(message); //TODO
             //update table
             updateTable();

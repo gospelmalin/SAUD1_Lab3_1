@@ -15,5 +15,11 @@ public class UserRepository {
 		String message = rc.updateUser(u1);
 		return message;	
 	}
+	
+	public String delete(User u1) {
+		RESTClient rc = new RESTClient();
+		String message = rc.deleteUser(u1);
+		return message;	
+	}
 
 }
