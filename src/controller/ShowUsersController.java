@@ -258,20 +258,8 @@ public class ShowUsersController {
 	    	u1.setId(Integer.parseInt(userIdTxt.getText()));
 			u1.setName(userNameTxt.getText());
 			u1.setProfession(userProfessionTxt.getText());
-	    	// userRepo.delete(u1); //TODO
-			RESTClient rc = new RESTClient(); //TODO temp for test
-			message = rc.updateUser(u1); //TODO temp for test
-            messageTextArea.setText(message); //TODO
-	    	/*
-	    	for (User user : usersList) {
-	    		if (user.getId() == id) {
-	    			user.setName(name);
-	    			user.setProfession(profession);
-	    			
-	    		}
-	    		
-	    	//	usersList = getUsersList();
-	    	}*/
+	    	message = userRepo.update(u1);
+            messageTextArea.setText(message);
 	    	updateTable();
 	    }
 
