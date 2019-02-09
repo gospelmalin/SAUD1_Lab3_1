@@ -9,13 +9,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import model.User;
-import model.Users;
-import repository.RESTClient;
 import repository.UserRepository;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -73,9 +69,7 @@ public class ShowUsersController {
 	    @FXML
 	    private void initialize () {
 	    	System.out.println("ShowUsersController initiated!");
-	    	//addData();
-	    	
-	    	  	
+  	
 	    	// mouseclick eventhandler
 	    	userTable.setOnMouseClicked(this::TableClicked);
 	    	// Match column with property
@@ -84,37 +78,7 @@ public class ShowUsersController {
 	    	professionCol.setCellValueFactory(new PropertyValueFactory<User, String>("profession"));
 	    	updateTable();
 	    }
-	    /*
-	    //TEST only
-	    private void addData() {
-	    	RESTClient rc = new RESTClient();
-	    	Users users = new Users();
-	    	//List<User> usersList = null;
-	    	String xmlString = rc.queryGetUsers();
-	    	//RESTClient.jaxbXmlStringToObject(xmlString);
-	    	usersList = new ArrayList<User>();
-	    //	usersList = (ArrayList<User>) rc.jaxbXmlStringToObject(xmlString);
-	    	usersList = rc.jaxbXmlStringToObject(xmlString);
-	   // 	users = rc.jaxbXmlStringToObject(xmlString); //TODO OLD
-	    	//System.out.println(users.getUsers());
-	    	//System.out.println("First user: " + usersList.get(1).getName());
-	    	//usersList = new ArrayList<User>();
-	    	//usersList = (ArrayList<User>) users.getUsers();
-	    	System.out.println("first record in usersList: " + usersList.get(0)); //TODO TEMP
-	    	ObservableList<User> list = FXCollections.observableArrayList(usersList);
-			userTable.setItems((ObservableList<User>) list);
-	    	/*
-	    	  //For test only from here
-	    	usersList = new ArrayList<User>();
-	    	User user1 = new User(1, "Anna", "Teacher");
-	    	usersList.add(user1);
-	    	User user2 = new User(2, "Martin", "Author");
-	    	usersList.add(user2);
-	    	//until here
-	    
-		//	updateTable();
-	    }
-	    */
+
 	    
 	    /**
 	     * Table clicked.
@@ -139,7 +103,7 @@ public class ShowUsersController {
 	    @FXML
 	    void selectAddUserView(ActionEvent event) {    	
 	    	String message = null;
-            //Textfield cannot be empty
+            //Text fields cannot be empty
             if(!(userNameTxt.getText().length() > 0)) {
             	message = "Enter name before trying to add a user.";
             	messageTextArea.setText(message);
@@ -187,8 +151,6 @@ public class ShowUsersController {
 			u1.setName(userNameTxt.getText());
 			u1.setProfession(userProfessionTxt.getText());
             message = userRepo.delete(u1);
-			//RESTClient rc = new RESTClient(); //TODO temp for test
-			//message = rc.deleteUser(u1); //TODO temp for test
             messageTextArea.setText(message); //TODO
             //update table
             updateTable();
@@ -198,6 +160,7 @@ public class ShowUsersController {
 	    void selectUpdateUserView(ActionEvent event) {
 	    	User u1 = new User();
 	    	String message = null;
+	    	//Text fields should not be empty
 	    	if(!(userNameTxt.getText().length() > 0)) {
             	message = "Enter the name of the user to update.";
             	messageTextArea.setText(message);
@@ -231,14 +194,8 @@ public class ShowUsersController {
 	  */
 	 // Updating table with result from Db search
 		private void updateTable() {
-			//RESTClient rc = new RESTClient();
-			String xmlString = userRepo.getAllUsers();
 	    	usersList = new ArrayList<User>();
-	    	usersList = userRepo.jaxbXmlStringToObject(xmlString);
-	    	System.out.println("first record in usersList: " + usersList.get(0)); //TODO TEMP
-		//	rc.queryGetUsers();
-	    	//jH = new JsonHandler();
-		//	resultingMovies = jH.createPopularMoviesArrayFromJsonString();
+	    	usersList = userRepo.getAllUsers();
 			ObservableList<User> list = FXCollections.observableArrayList(usersList);
 			userTable.setItems((ObservableList<User>) list);
 		}
