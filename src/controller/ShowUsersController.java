@@ -186,7 +186,16 @@ public class ShowUsersController {
 
 	    @FXML
 	    void showSelectedUser(ActionEvent event) {
-
+	    	int id = Integer.parseInt(userIdTxt.getText());
+	    	User user = new User();
+	    	user = userRepo.getSelectedUser(id);
+	    	int userId = user.getId();
+	    	String name = user.getName();
+	    	String profession = user.getProfession();
+	    	messageTextArea.setText("Selected user: \n");
+	    	messageTextArea.appendText("Id: " + userId + "\n");
+	    	messageTextArea.appendText("Name: " + name + "\n");
+	    	messageTextArea.appendText("Profession: " + profession);    	
 	    }
 	
 	 /**

@@ -35,6 +35,23 @@ public class UserRepository {
 		usersList = jaxbXmlStringToObject(xmlString);	
 		return usersList;
 	}
+	
+	/**
+	 * Get selected user call to the client.
+	 *
+	 * @return the user
+	 */
+	public User getSelectedUser(int userId) {
+		RESTClient rc = new RESTClient();
+		String xmlString = rc.getSelectedUser(userId);
+		ArrayList<User> usersList =  new ArrayList<User>();
+		usersList = jaxbXmlStringToObject(xmlString);
+		int id = usersList.get(0).getId();
+		String name = usersList.get(0).getName();
+		String profession = usersList.get(0).getProfession();
+		User user = new User(id, name, profession);
+		return user;
+	}
 
 	/**
 	 * add user call to the client.
