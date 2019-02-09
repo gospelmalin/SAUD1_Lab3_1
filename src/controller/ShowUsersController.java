@@ -137,6 +137,37 @@ public class ShowUsersController {
 	    }
 
 	    @FXML
+	    void selectAddUserView(ActionEvent event) {    	
+	    	String message = null;
+            //Textfield cannot be empty
+            if(!(userNameTxt.getText().length() > 0)) {
+            	message = "Enter name before trying to add a user.";
+            	messageTextArea.setText(message);
+                return;
+            }
+            if(!(userProfessionTxt.getText().length() > 0)) {
+            	message = "Enter profession before trying to add a user. \nIf no profession, enter None.";
+            	messageTextArea.setText(message);
+                return;
+            }
+            if(!(userIdTxt.getText().length() > 0)) {
+            	message = "Enter id before trying to add a user.";
+            	messageTextArea.setText(message);
+                return;
+            }            
+            //New user instance			
+			User u1 = new User();
+			u1.setId(Integer.parseInt(userIdTxt.getText()));
+			u1.setName(userNameTxt.getText());
+			u1.setProfession(userProfessionTxt.getText());
+			message = userRepo.add(u1); //TODO
+            messageTextArea.setText(message); //TODO
+            //update table
+            updateTable();
+	    }
+	    
+	    /*
+	    @FXML
 	    void selectAddUserView(ActionEvent event) {
 	    	
 	    	//mer riktigt härifrån
@@ -174,19 +205,9 @@ public class ShowUsersController {
 	     //   }
 	    	
 	    	//till hit
-          //Test härifrån
-	    /*
-	    	int id = Integer.parseInt(userIdTxt.getText());
-	    	String name = userNameTxt.getText();
-	    	String profession = userProfessionTxt.getText();
-	    	User u1 = new User(id, name, profession);
-	    	userRepo.add(u1);
-	    	resetTextFields();
-	    	updateTable();
-	    	messageTextArea.setText("User added: " + "TODO add user info");
-	    	*/
-	    	//hit
+ 
 	    }
+	    */
 	    
 	    private void resetTextFields() {
 	    	userIdTxt.setText("");
