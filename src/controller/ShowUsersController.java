@@ -186,6 +186,13 @@ public class ShowUsersController {
 
 	    @FXML
 	    void showSelectedUser(ActionEvent event) {
+	    	String message = null;
+	    	//Text fields should not be empty
+	    	 if(!(userIdTxt.getText().length() > 0)) {
+	            	message = "Enter id of user to show.";
+	            	messageTextArea.setText(message);
+	                return;
+            }
 	    	int id = Integer.parseInt(userIdTxt.getText());
 	    	User user = new User();
 	    	user = userRepo.getSelectedUser(id);
