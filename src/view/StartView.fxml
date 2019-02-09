@@ -12,10 +12,10 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="showUsersViewBtn" layoutX="155.0" layoutY="96.0" mnemonicParsing="false" onAction="#selectShowUsersView" prefHeight="88.0" prefWidth="112.0" text="Show users" />
-      <Button fx:id="addUserViewBtn" layoutX="322.0" layoutY="96.0" mnemonicParsing="false" onAction="#selectAddUserView" prefHeight="88.0" prefWidth="112.0" text="Add user" />
-      <Button fx:id="updateUserViewBtn" layoutX="155.0" layoutY="217.0" mnemonicParsing="false" onAction="#selectUpdateUserView" prefHeight="88.0" prefWidth="112.0" text="Update user" textAlignment="CENTER" wrapText="true" />
-      <Button fx:id="deleteUserViewBtn" layoutX="322.0" layoutY="217.0" mnemonicParsing="false" onAction="#selectDeleteUserView" prefHeight="88.0" prefWidth="112.0" text="Delete user" textAlignment="CENTER" wrapText="true" />
+      <Button fx:id="showUsersViewBtn" layoutX="207.0" layoutY="140.0" mnemonicParsing="false" onAction="#selectShowUsersView" prefHeight="121.0" prefWidth="176.0" text="Start here!">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font></Button>
       <Label alignment="CENTER" layoutX="4.0" layoutY="35.0" prefHeight="42.0" prefWidth="580.0" text="Show, Add, Update or Delete users">
          <font>
             <Font size="14.0" />
