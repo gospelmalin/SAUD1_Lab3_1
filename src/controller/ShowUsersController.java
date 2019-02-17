@@ -12,10 +12,15 @@ import model.User;
 import repository.UserRepository;
 
 import java.util.ArrayList;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
+
+/**
+ * The Class ShowUsersController handles what is related to the Show Users view.
+ */
 public class ShowUsersController {
 	
 	  @FXML
@@ -118,16 +123,37 @@ public class ShowUsersController {
             	message = "Enter id before trying to add a user.";
             	messageTextArea.setText(message);
                 return;
-            }            
-            //New user instance			
-			User u1 = new User();
-			u1.setId(Integer.parseInt(userIdTxt.getText()));
-			u1.setName(userNameTxt.getText());
-			u1.setProfession(userProfessionTxt.getText());
-			message = userRepo.add(u1); //TODO
-            messageTextArea.setText(message); //TODO
-            //update table
-            updateTable();
+            }  
+            boolean isInteger = isInteger(userIdTxt.getText());
+        	if (!isInteger) {
+        		message = "Id must be an integer.";
+            	messageTextArea.setText(message);
+                return;
+        	}
+        	boolean userExist = checkUserExistance(Integer.parseInt(userIdTxt.getText()));
+			if (userExist) {
+				message = "The user with that id already exists.\n";
+				messageTextArea.setText(message);
+                return;
+			}
+			// the expression should allow any kind of letter from any language as well as those special characters common in names.
+			// Name should not start with .
+			if (!userNameTxt.getText().matches("^[\\p{L} .'-]+$") || userNameTxt.getText().startsWith(".")) {
+				message = "Name should only contain letters and those special characters used in names. \nName should not start with .\n";
+				messageTextArea.setText(message);
+				return;
+			}			
+			else {
+	            //New user instance			
+				User u1 = new User();
+				u1.setId(Integer.parseInt(userIdTxt.getText()));
+				u1.setName(userNameTxt.getText());
+				u1.setProfession(userProfessionTxt.getText());
+				message = userRepo.add(u1); //TODO
+	            messageTextArea.setText(message); //TODO
+	            //update table
+	            updateTable();
+			}
 	    }
 	    
 	    
@@ -147,13 +173,27 @@ public class ShowUsersController {
             	messageTextArea.setText(message);
                 return;
             }
-	    	u1.setId(Integer.parseInt(userIdTxt.getText()));
-			u1.setName(userNameTxt.getText());
-			u1.setProfession(userProfessionTxt.getText());
-            message = userRepo.delete(u1);
-            messageTextArea.setText(message); //TODO
-            //update table
-            updateTable();
+	    	boolean isInteger = isInteger(userIdTxt.getText());
+	        	if (!isInteger) {
+	        		message = "Id must be an integer.";
+	            	messageTextArea.setText(message);
+	                return;
+	        	}
+        	boolean userExist = checkUserExistance(Integer.parseInt(userIdTxt.getText()));
+			if (!userExist) {
+				message = "The user with that id does not exist.\n";
+				messageTextArea.setText(message);
+                return;
+			}
+			else {
+		    	u1.setId(Integer.parseInt(userIdTxt.getText()));
+				u1.setName(userNameTxt.getText());
+				u1.setProfession(userProfessionTxt.getText());
+	            message = userRepo.delete(u1);
+	            messageTextArea.setText(message); //TODO
+	            //update table
+	            updateTable();
+			}
 	    }
 
 	    @FXML
@@ -176,12 +216,33 @@ public class ShowUsersController {
             	messageTextArea.setText(message);
                 return;
             }
-	    	u1.setId(Integer.parseInt(userIdTxt.getText()));
-			u1.setName(userNameTxt.getText());
-			u1.setProfession(userProfessionTxt.getText());
-	    	message = userRepo.update(u1);
-            messageTextArea.setText(message);
-	    	updateTable();
+            boolean isInteger = isInteger(userIdTxt.getText());
+        	if (!isInteger) {
+        		message = "Id must be an integer.";
+            	messageTextArea.setText(message);
+                return;
+        	}
+        	boolean userExist = checkUserExistance(Integer.parseInt(userIdTxt.getText()));
+			if (!userExist) {
+				message = "The user with that id does not exist.\n";
+				messageTextArea.setText(message);
+                return;
+			}
+			// the expression should allow any kind of letter from any language as well as those special characters common in names.
+			// Name should not start with .
+			if (!userNameTxt.getText().matches("^[\\p{L} .'-]+$") || userNameTxt.getText().startsWith(".")) {
+				message = "Name should only contain letters and those special characters used in names. \nName should not start with .\n";
+				messageTextArea.setText(message);
+				return;
+			}		
+			else {
+		    	u1.setId(Integer.parseInt(userIdTxt.getText()));
+				u1.setName(userNameTxt.getText());
+				u1.setProfession(userProfessionTxt.getText());
+		    	message = userRepo.update(u1);
+	            messageTextArea.setText(message);
+		    	updateTable();
+			}
 	    }
 
 	    @FXML
@@ -193,16 +254,30 @@ public class ShowUsersController {
 	            	messageTextArea.setText(message);
 	                return;
             }
-	    	int id = Integer.parseInt(userIdTxt.getText());
-	    	User user = new User();
-	    	user = userRepo.getSelectedUser(id);
-	    	int userId = user.getId();
-	    	String name = user.getName();
-	    	String profession = user.getProfession();
-	    	messageTextArea.setText("Selected user: \n");
-	    	messageTextArea.appendText("Id: " + userId + "\n");
-	    	messageTextArea.appendText("Name: " + name + "\n");
-	    	messageTextArea.appendText("Profession: " + profession);    	
+	    	boolean isInteger = isInteger(userIdTxt.getText());
+	        	if (!isInteger) {
+	        		message = "Id must be an integer.";
+	            	messageTextArea.setText(message);
+	                return;
+	        	}
+        	boolean userExist = checkUserExistance(Integer.parseInt(userIdTxt.getText()));
+			if (!userExist) {
+				message = "The user with that id does not exist.\n";
+				messageTextArea.setText(message);
+                return;
+			}
+			else {
+		    	int id = Integer.parseInt(userIdTxt.getText());
+		    	User user = new User();
+		    	user = userRepo.getSelectedUser(id);
+		    	int userId = user.getId();
+		    	String name = user.getName();
+		    	String profession = user.getProfession();
+		    	messageTextArea.setText("Selected user: \n");
+		    	messageTextArea.appendText("Id: " + userId + "\n");
+		    	messageTextArea.appendText("Name: " + name + "\n");
+		    	messageTextArea.appendText("Profession: " + profession);    
+			}
 	    }
 	
 	 /**
@@ -215,4 +290,37 @@ public class ShowUsersController {
 			ObservableList<User> list = FXCollections.observableArrayList(usersList);
 			userTable.setItems((ObservableList<User>) list);
 		}
+		
+		private static boolean isInteger(String s) {
+		      boolean isValidInteger = false;
+		      try {
+		         Integer.parseInt(s);	 
+		         // s is a valid integer	 
+		         isValidInteger = true;
+		      }
+		      catch (NumberFormatException ex) {
+		         // s is not an integer
+			      }	 
+			  return isValidInteger;
+			   }
+		
+		/**
+		 * The check user existance method.
+		 *
+		 * @param userId the user id
+		 * @return the boolean
+		 */
+		private boolean checkUserExistance(int userId) {
+			ArrayList<User> allUsers = userRepo.getAllUsers();
+			boolean userExist = false;
+			for (User user : allUsers) {
+				if (user.getId() == userId) {
+					userExist = true;
+					break;
+				}
+			}
+			return userExist;
+		}
+		
+		
 }
